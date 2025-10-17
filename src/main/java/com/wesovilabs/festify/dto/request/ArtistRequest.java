@@ -25,7 +25,7 @@ public record ArtistRequest(
         Integer listeners,
 
 
-        @Pattern(regexp = "", message = "El estado del artista debe ser Activo o Borrador")
+        @Pattern(regexp = "^Activo|Borrador$", message = "El estado del artista debe ser Activo o Borrador")
         String status,
 
         @Max(value = 2000, message = "No se permiten más de 2000 caracteres")

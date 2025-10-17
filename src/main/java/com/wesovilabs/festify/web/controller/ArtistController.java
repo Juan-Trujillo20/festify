@@ -60,7 +60,6 @@ public class ArtistController {
     public ArtistDetailResponse getArtist(@PathVariable String id){
         return this.artistService.getArtistById(id);
     }
-
     @Operation(summary = "Elimina un artista")
     @ApiResponse(responseCode = "204", description = "Eliminado")
     @ApiResponse(responseCode = "404", description = "Artista no encontrado con el Id proporcionado",
@@ -70,7 +69,6 @@ public class ArtistController {
     public void deleteArtist(@PathVariable String id){
         this.artistService.deleteArtist(id);
     }
-
     @Operation(summary = "Crea un artista")
     @ApiResponse(responseCode = "201", description = "Creado",
             content = @Content(schema = @Schema(implementation = ArtistResumeResponse.class)))
@@ -81,7 +79,6 @@ public class ArtistController {
     public ArtistResumeResponse createArtist(@Valid @RequestBody ArtistRequest request){
         return this.artistService.createArtist(request);
     }
-
     @Operation(summary = "Actualiza un artista")
     @ApiResponse(responseCode = "200", description = "Actualizado",
             content = @Content(schema = @Schema(implementation = ArtistResumeResponse.class)))
