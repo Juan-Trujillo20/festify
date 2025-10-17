@@ -36,9 +36,13 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public ArtistResumeResponse createArtist(ArtistRequest request) {
+        // dto.request -> persistence.entity
         ArtistEntity artist = ArtistMapper.mapArtistRequestToArtistEntity(request);
-        logger.info("Creating artist with name {} and country {}", artist.getName(), artist.getCountry());
+
+        // repository (bbdd)
         ArtistEntity result = this.artistJpaRepository.save(artist);
+
+        // persistence.entity -> dto.response
         return ArtistMapper.mapArtistToArtistResume(result);
     }
 

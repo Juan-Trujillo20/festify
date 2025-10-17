@@ -15,6 +15,7 @@ public class ArtistMapper {
                 toPubId(artistEntity.getId()),
                 artistEntity.getName(),
                 artistEntity.getCountry(),
+                artistEntity.getStatus(),
                 artistEntity.getGenres(),
                 artistEntity.getListeners());
     }
