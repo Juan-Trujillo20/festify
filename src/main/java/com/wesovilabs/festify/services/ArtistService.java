@@ -1,8 +1,8 @@
 package com.wesovilabs.festify.services;
 
-import com.wesovilabs.festify.dto.request.CreateArtistRequest;
+import com.wesovilabs.festify.dto.request.ArtistRequest;
+import com.wesovilabs.festify.dto.response.ArtistDetailResponse;
 import com.wesovilabs.festify.dto.response.ArtistResumeResponse;
-import com.wesovilabs.festify.persistence.jpa.entity.ArtistEntity;
 
 import java.util.List;
 
@@ -10,5 +10,11 @@ public interface ArtistService {
 
     List<ArtistResumeResponse> listArtists();
 
-    ArtistResumeResponse createArtist(CreateArtistRequest request);
+    ArtistResumeResponse createArtist(ArtistRequest request);
+
+    ArtistDetailResponse updateArtist(String id, ArtistRequest request);
+
+    ArtistDetailResponse getArtistById(String id);
+
+    void deleteArtist(String id);
 }

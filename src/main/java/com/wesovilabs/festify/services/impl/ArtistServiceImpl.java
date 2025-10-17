@@ -1,17 +1,21 @@
 package com.wesovilabs.festify.services.impl;
 
-import com.wesovilabs.festify.dto.request.CreateArtistRequest;
+import com.wesovilabs.festify.dto.request.ArtistRequest;
+import com.wesovilabs.festify.dto.response.ArtistDetailResponse;
 import com.wesovilabs.festify.dto.response.ArtistResumeResponse;
 import com.wesovilabs.festify.mapper.ArtistMapper;
 import com.wesovilabs.festify.persistence.jpa.entity.ArtistEntity;
 import com.wesovilabs.festify.persistence.jpa.repository.ArtistJpaRepository;
 import com.wesovilabs.festify.services.ArtistService;
+import com.wesovilabs.festify.util.exception.ArtistNotFoundException;
+import com.wesovilabs.festify.util.exception.InvalidIdException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ArtistServiceImpl implements ArtistService {
@@ -31,10 +35,54 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public ArtistResumeResponse createArtist(CreateArtistRequest request) {
-        ArtistEntity artist = new ArtistEntity(request.name(),request.genres(),request.country());
+    public ArtistResumeResponse createArtist(ArtistRequest request) {
+        ArtistEntity artist = ArtistMapper.mapArtistRequestToArtistEntity(request);
         logger.info("Creating artist with name {} and country {}", artist.getName(), artist.getCountry());
         ArtistEntity result = this.artistJpaRepository.save(artist);
         return ArtistMapper.mapArtistToArtistResume(result);
     }
+
+    @Override
+    public ArtistDetailResponse updateArtist(String strId, ArtistRequest request) {
+        Long id = parseArtistId(strId);
+        ArtistEntity artist = ArtistMapper.mapArtistRequestToArtistEntity(request);
+        artist.setId(id);
+        logger.info("Update artist with id {}", artist.getId());
+        if (!this.artistJpaRepository.existsById(id)){
+            throw new ArtistNotFoundException("Artista no encontrado con id " + strId);
+        }
+        ArtistEntity result = this.artistJpaRepository.save(artist);
+        return ArtistMapper.mapArtistToArtistDetail(result);
+    }
+
+    @Override
+    public ArtistDetailResponse getArtistById(String strId) {
+        Long id = parseArtistId(strId);
+        Optional<ArtistEntity> artist = this.artistJpaRepository.findById(id);
+        if (artist.isEmpty()){
+            throw new ArtistNotFoundException("Artista no encontrado con id " + strId);
+        }
+        return ArtistMapper.mapArtistToArtistDetail(artist.get());
+    }
+
+    @Override
+    public void deleteArtist(String strId) {
+        Long id = parseArtistId(strId);
+        if (!this.artistJpaRepository.existsById(id)){
+            throw new ArtistNotFoundException("Artista no encontrado con id " + strId);
+        }
+        this.artistJpaRepository.deleteById(id);
+    }
+
+
+    private Long parseArtistId(String strId) {
+        try {
+            strId = strId.trim().replace("ART-","");
+            Long id = Integer.valueOf(strId).longValue();
+            return id;
+        }catch (NumberFormatException e) {
+            throw new InvalidIdException("Invalid artist id " + strId);
+        }
+    }
+
 }

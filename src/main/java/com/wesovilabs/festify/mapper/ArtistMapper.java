@@ -1,17 +1,36 @@
 package com.wesovilabs.festify.mapper;
 
+import com.wesovilabs.festify.dto.request.ArtistRequest;
+import com.wesovilabs.festify.dto.response.ArtistDetailResponse;
 import com.wesovilabs.festify.dto.response.ArtistResumeResponse;
 import com.wesovilabs.festify.persistence.jpa.entity.ArtistEntity;
 
 public class ArtistMapper {
 
+    private static String toPubId(Long artistId) {
+        return "ART-"+artistId;
+    }
     public static ArtistResumeResponse mapArtistToArtistResume(ArtistEntity artistEntity) {
         return new ArtistResumeResponse(
-                "ART-"+artistEntity.getId(),
+                toPubId(artistEntity.getId()),
                 artistEntity.getName(),
                 artistEntity.getCountry(),
                 artistEntity.getGenres(),
                 artistEntity.getListeners());
     }
 
+    public static ArtistEntity mapArtistRequestToArtistEntity(ArtistRequest request) {
+        return new ArtistEntity(request.name(),request.genres(),request.country());
+    }
+
+    public static ArtistDetailResponse mapArtistToArtistDetail(ArtistEntity artistEntity) {
+        return new ArtistDetailResponse(
+                toPubId(artistEntity.getId()),
+                artistEntity.getName(),
+                artistEntity.getGenres(),
+                artistEntity.getCountry(),
+                artistEntity.getListeners(),
+                artistEntity.getStatus(),
+                artistEntity.getBiography());
+    }
 }
