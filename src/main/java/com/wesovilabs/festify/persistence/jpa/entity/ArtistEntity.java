@@ -47,12 +47,6 @@ public class ArtistEntity {
         this.biography = biography;
     }
 
-    public ArtistEntity(String name, List<String> genres, String country) {
-        this.name = name;
-        this.genres = genres;
-        this.country = country;
-    }
-
     public Long getId() {
         return id;
     }

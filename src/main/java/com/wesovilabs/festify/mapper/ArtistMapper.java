@@ -20,7 +20,7 @@ public class ArtistMapper {
     }
 
     public static ArtistEntity mapArtistRequestToArtistEntity(ArtistRequest request) {
-        return new ArtistEntity(request.name(),request.genres(),request.country());
+        return new ArtistEntity(null, request.name(),request.genres(),request.country(),request.listeners(),request.status(),request.biography());
     }
 
     public static ArtistDetailResponse mapArtistToArtistDetail(ArtistEntity artistEntity) {
