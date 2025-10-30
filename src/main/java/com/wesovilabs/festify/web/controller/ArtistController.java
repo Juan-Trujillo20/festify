@@ -3,7 +3,7 @@ package com.wesovilabs.festify.web.controller;
 import com.wesovilabs.festify.dto.request.ArtistRequest;
 import com.wesovilabs.festify.dto.response.ArtistDetailResponse;
 import com.wesovilabs.festify.dto.response.ArtistResumeResponse;
-import com.wesovilabs.festify.services.ArtistService;
+import com.wesovilabs.festify.service.ArtistService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

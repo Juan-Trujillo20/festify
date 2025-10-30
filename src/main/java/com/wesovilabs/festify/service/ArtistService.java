@@ -1,4 +1,4 @@
-package com.wesovilabs.festify.services;
+package com.wesovilabs.festify.service;
 
 import com.wesovilabs.festify.dto.request.ArtistRequest;
 import com.wesovilabs.festify.dto.response.ArtistDetailResponse;

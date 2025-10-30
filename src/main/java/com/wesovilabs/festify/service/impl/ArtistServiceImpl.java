@@ -1,4 +1,4 @@
-package com.wesovilabs.festify.services.impl;
+package com.wesovilabs.festify.service.impl;
 
 import com.wesovilabs.festify.dto.request.ArtistRequest;
 import com.wesovilabs.festify.dto.response.ArtistDetailResponse;
@@ -6,7 +6,7 @@ import com.wesovilabs.festify.dto.response.ArtistResumeResponse;
 import com.wesovilabs.festify.mapper.ArtistMapper;
 import com.wesovilabs.festify.persistence.jpa.entity.ArtistEntity;
 import com.wesovilabs.festify.persistence.jpa.repository.ArtistJpaRepository;
-import com.wesovilabs.festify.services.ArtistService;
+import com.wesovilabs.festify.service.ArtistService;
 import com.wesovilabs.festify.util.exception.ArtistNotFoundException;
 import com.wesovilabs.festify.util.exception.InvalidIdException;
 import org.slf4j.Logger;
@@ -77,7 +77,6 @@ public class ArtistServiceImpl implements ArtistService {
         }
         this.artistJpaRepository.deleteById(id);
     }
-
 
     private Long parseArtistId(String strId) {
         try {
