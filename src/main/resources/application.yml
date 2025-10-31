@@ -3,10 +3,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/festify
     username: user
     password: secret
-    # driver-class-name: org.postgresql.Driver   # opcional, se infiere por la URL
   jpa:
     hibernate:
-      ddl-auto: validate # o validate/create/create-drop
+      ddl-auto: validate
     show-sql: true
     properties:
       hibernate.format_sql: true
