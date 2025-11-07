@@ -1,4 +1,17 @@
 package com.wesovilabs.festify.dto.response;
 
-public record AlbumResumeResponse() {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+public record AlbumResumeResponse(
+        Long id,
+        Long artistId,
+        LocalDateTime createdAt,
+        Integer durationSeconds,
+        LocalDate releaseDate,
+        String title,
+        Integer tracksCount,
+        LocalDateTime updatedAt
+) {
+
 }

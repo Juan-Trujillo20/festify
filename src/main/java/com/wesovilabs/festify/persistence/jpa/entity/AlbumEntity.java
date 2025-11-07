@@ -35,7 +35,7 @@ public class AlbumEntity {
     private LocalDateTime updatedAt;
 
 
-    public AlbumEntity() {}
+    public AlbumEntity(Object o, Long aLong, String id, Integer integer, LocalDate localDate, String title, Integer tracksCount) {}
     public AlbumEntity(Long id,Long artistId,LocalDateTime createdAt,
                        Integer durationSeconds,LocalDate releaseDate,
                        String title,Integer tracksCount,LocalDateTime updatedAt) {
@@ -50,46 +50,58 @@ public class AlbumEntity {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
     public Long getArtistId() {
         return artistId;
     }
+
     public void setArtistId(Long artistId) {
         this.artistId = artistId;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
-    public LocalDate getReleaseDate() {
-        return releaseDate;
-    }
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
+
     public Integer getTracksCount() {
         return tracksCount;
     }
+
     public void setTracksCount(Integer tracksCount) {
         this.tracksCount = tracksCount;
     }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     public Integer getDurationSeconds() {
         return durationSeconds;
     }
+
     public void setDurationSeconds(Integer durationSeconds) {
         this.durationSeconds = durationSeconds;
     }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
-
     }
+
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
@@ -97,9 +109,8 @@ public class AlbumEntity {
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
+
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-
 }

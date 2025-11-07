@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Schema(description = "Aqui voy a poner los datos del album a crear o a modificar")
 public record AlbumRequest(
-        String id,
+        Long id,
         Long artistId,
         Integer durationSeconds,
         LocalDate releaseDate,
